@@ -1,11 +1,22 @@
-<div align="center">
+# HOOT Studio — Operational AI Product Photography Studio
 
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+استودیوی هوشمند عکاسی تبلیغاتی و تلفیق محصول با قدرت هوش مصنوعی Google Gemini.
 
-  <h1>Built with AI Studio</h2>
+## ساختار و ویژگی‌ها (Architecture & Features)
 
-  <p>The fastest path from prompt to production with Gemini.</p>
+- **ساختار تمام‌صفحه ماژولار (Modular Split):** این اپلیکیشن با تقسیم به کامپوننت‌های مجزا در پوشه `/src/components/` ساختار نگهداری و گسترش فوق‌العاده آسانی دارد.
+- **امنیت ۱۰۰٪ کلیدهای API (Security & Privacy):**
+  - کلیه ارتباطات با هوش مصنوعی و مدل‌های Imagen از طریق پروکسی سرور متمرکز و پنهان در فایل `server.ts` مدیریت می‌شوند.
+  - هیچ کدی درون ساختار فرانت‌اند حاوی کلید سخت‌کد شده نبوده و خطر افشا قطع گردیده است.
+  - فرانت‌اند می‌تواند از کلید محیطی سرور در تولید به صورت خودکار استفاده کند یا کلاینت‌ها کلید اختیاری خود را برای لغو محدودیت وارد کنند.
 
-  <a href="https://aistudio.google.com/apps">Start building</a>
+## استقرار تولید (Production Deployment Warning)
 
-</div>
+> ⚠️ **مهم برای امنیت کلید در پروداکشن:**
+> در محیط‌های لوکال می‌توانید از `.env` یا `import.meta.env.VITE_GEMINI_API_KEY` استفاده کنید. اما برای استقرار نهایی در تولید حتما باید از پروکسی سرور پیاده‌سازی شده در `server.ts` بهره ببرید تا کلید شما هرگز به مرورگر کلاینت‌ها نشت نکند.
+
+## اسکریپت‌ها (Execution Scripts)
+
+- `npm run dev`: سرور تمام‌صفحه Express را به همراه ابزارهای Vite به صورت یکپارچه بر پورت ۳۰۰۰ بوت می‌کند.
+- `npm run build`: خروجی فایل‌های کلاینت را فشرده کرده و سرور بک‌اند را به صورت مستقل در `dist/server.cjs` توسط esbuild بیلد می‌نماید.
+- `npm run start`: خروجی بیلد نهایی را لانچ کانتینر می‌کند.
